@@ -8,7 +8,7 @@ export interface user {
     lastname: string
     email: string
     password: string
-    token:string
+    token: string
 }
 
 
@@ -19,11 +19,21 @@ export interface loginForm {
     password: string
 }
 
-
-//响应类型
-export interface loginResponseData extends user{
+export interface updateForm extends user {
 
 }
+
+
+
+//响应类型
+export interface loginResponseData extends user {
+
+}
+
+export interface updateResponseData extends user {
+
+}
+
 
 //接口
 export const loginAPI = ({ phone, password }: loginForm) => {
@@ -37,5 +47,20 @@ export const loginAPI = ({ phone, password }: loginForm) => {
     })
 }
 
+export const updateAPI = ({ id, phone, password, firstname, lastname, email, token }: updateForm) => {
+    return request<any, result<updateResponseData>>({
+        url: '/user/update',
+        method: 'POST',
+        data: {
+            id,
+            phone,
+            password,
+            firstname,
+            lastname,
+            email,
+            token
+        }
+    })
+}
 
 

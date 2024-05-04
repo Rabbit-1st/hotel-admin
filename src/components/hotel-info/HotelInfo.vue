@@ -14,7 +14,7 @@
     <el-input v-model="form.foreignInfo" placeholder=""></el-input>
     <p>膳食安排</p>
     <el-input v-model="form.dietary" placeholder=""></el-input>
-    <p>停车服务</p>
+    <p>停车服务</p>w
     <el-input v-model="form.parking" placeholder=""></el-input>
     <p>网络设施</p>
     <el-input v-model="form.network" placeholder=""></el-input>
@@ -33,7 +33,7 @@ import { onMounted, ref } from 'vue';
 const form = ref<hotelInfo>({
     hotelId: '',
     hotelName: '',
-    address: '',
+    address: '',    
     contact: '',
     baseInfo: '',
     intro: '',

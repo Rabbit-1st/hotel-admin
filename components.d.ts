@@ -47,5 +47,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TopNav: typeof import('./src/components/layout/TopNav.vue')['default']
     UpdateDialog: typeof import('./src/components/order/UpdateDialog.vue')['default']
+    UpdatePasswordDialog: typeof import('./src/components/my/UpdatePasswordDialog.vue')['default']
+    UpdatePhoneDialog: typeof import('./src/components/my/UpdatePhoneDialog.vue')['default']
   }
 }

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginAPI } from '@/apis/user'
-import type { user, loginForm } from '@/apis/user'
+import { loginAPI, updateAPI } from '@/apis/user'
+import type { user, loginForm, updateForm } from '@/apis/user'
 import { ElMessage } from 'element-plus'
 import router from '@/routers'
 
@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', () => {
 
     const getUserInfo = async ({ phone, password }: loginForm) => {
         const res = await loginAPI({ phone, password })
-        console.log(res)
+
         if (res.code === 200) {
             userInfo.value = res.data
             ElMessage.success({
@@ -37,10 +37,37 @@ export const useUserStore = defineStore('user', () => {
         router.push('/login')
     }
 
+    interface updateParameter {
+        phone: string
+        password: string
+    }
+
+    const update = async ({ phone, password }: updateParameter) => {
+        const user = userInfo.value
+        user.phone = phone
+        user.password = password
+
+
+        const res = await updateAPI(user)
+
+        if (res.code === 200) {
+            userInfo.value = res.data
+            ElMessage.success({
+                message: res.msg
+            })
+        } else {
+            ElMessage.warning({
+                message: res.msg
+            })
+        }
+
+        return res
+    }
     return {
         userInfo,
         getUserInfo,
-        logOut
+        logOut,
+        update
     }
 }, {
     persist: true

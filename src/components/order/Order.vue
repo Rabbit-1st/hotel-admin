@@ -96,6 +96,8 @@ const getListData = async () => {
     const res = await orderListAPI({ current, size, order, prop, status, phone })
     if (res.code == 200) {
         let list: order[] = res.data.records
+        console.log(res);
+        
         orderList.value = check(list)
 
     } else {
@@ -130,7 +132,7 @@ const check = (list: order[]) => {
         item.createDateText = days(item.createDate).format('YYYY.MM.DD')
         item.checkInDateText = days(item.checkInDate).format('YYYY.MM.DD')
         item.checkOutDateText = days(item.checkOutDate).format('YYYY.MM.DD')
-        if (null !== item.cancelDate) {
+        if (null != item.cancelDate) {
             item.cancelDateText = days(item.cancelDate).format('YYYY.MM.DD')
         } else {
             item.cancelDateText = '未取消'
